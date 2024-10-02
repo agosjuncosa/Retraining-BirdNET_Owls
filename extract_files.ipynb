@@ -1,0 +1,91 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ca2c8b89-47ee-47a2-9945-a861fb6b23d8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "import shutil\n",
+    "import random\n",
+    "import argparse\n",
+    "\n",
+    "# Function to check if a time string is within a specific period\n",
+    "def is_within_period(time_str, period, night_periods):\n",
+    "    start, end = night_periods[period]\n",
+    "    if start <= time_str <= end:\n",
+    "        return True\n",
+    "    return False\n",
+    "\n",
+    "def main(input_dir, output_dir):\n",
+    "    # Define the night periods and their corresponding time ranges\n",
+    "    night_periods = {\n",
+    "        'Late_night': ['000000', '033000'],\n",
+    "        'Dawn': ['034000', '071000'],\n",
+    "        'Dusk': ['180000', '213000'],\n",
+    "        'Night': ['214000', '235000']\n",
+    "    }\n",
+    "    \n",
+    "    # Loop through each site directory\n",
+    "    for site in os.listdir(input_dir):\n",
+    "        site_dir = os.path.join(input_dir, site)\n",
+    "        if os.path.isdir(site_dir):\n",
+    "            # Initialize a dictionary to store files for each night period\n",
+    "            period_files = {period: [] for period in night_periods}\n",
+    "\n",
+    "            # Loop through each survey night directory within the site\n",
+    "            for survey_night in os.listdir(site_dir):\n",
+    "                sn_dir = os.path.join(site_dir, survey_night)\n",
+    "                if os.path.isdir(sn_dir):\n",
+    "                    # Loop through each audio file within the survey night directory\n",
+    "                    for audio_file in os.listdir(sn_dir):\n",
+    "                        if audio_file.lower().endswith('.wav'):\n",
+    "                            # Extract the time part from the audio file name\n",
+    "                            time_part = audio_file.split('_')[-1][:6]\n",
+    "                            # Check which period the time part belongs to and add to the respective list\n",
+    "                            for period in night_periods:\n",
+    "                                if is_within_period(time_part, period, night_periods):\n",
+    "                                    period_files[period].append(os.path.join(sn_dir, audio_file))\n",
+    "            \n",
+    "            # Randomly select 41 files from each period and copy them to the target directory\n",
+    "            for period in period_files:\n",
+    "                selected_files = random.sample(period_files[period], min(41, len(period_files[period])))\n",
+    "                for file_path in selected_files:\n",
+    "                    shutil.copy(file_path, output_dir)\n",
+    "\n",
+    "    print(\"Files have been successfully copied to the target directory.\")\n",
+    "\n",
+    "if __name__ == \"__main__\":\n",
+    "    parser = argparse.ArgumentParser(description='Extract audio files based on time periods.')\n",
+    "    parser.add_argument('input_dir', type=str, help='The input directory containing night recordings.')\n",
+    "    parser.add_argument('output_dir', type=str, help='The output directory to store the extracted files.')\n",
+    "    args = parser.parse_args()\n",
+    "\n",
+    "    main(args.input_dir, args.output_dir)\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.17"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
