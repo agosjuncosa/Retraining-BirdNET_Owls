@@ -46,7 +46,6 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
-*.py,cover
 .hypothesis/
 .pytest_cache/
 cover/
@@ -77,6 +76,9 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# Ignore Zone Identifier Files
+*:Zone.Identifier
 
 # IPython
 profile_default/
