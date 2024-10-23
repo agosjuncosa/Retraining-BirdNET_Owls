@@ -62,8 +62,6 @@ ssh-add ~/.ssh/id_ed25519
 [Full Example Workflow]
 Here’s an example of what a typical Git workflow might look like:
 
-bash
-Copy code
 # 1. Navigate to your repository
 cd /home/agosjuncosa/Retraining-BirdNET_Owls
 
@@ -80,5 +78,20 @@ git commit -m "Fixed audio processing bug and updated README"
 
 # 6. Push the changes to the remote repository
 git push origin main
-Troubleshooting Common Issues
+
+[Troubleshooting Common Issues]
 Permission Denied (Public Key): If you encounter this issue, it might be because your SSH key isn’t added to the SSH agent. Run the following command to add it again:
+
+```
+ssh-add ~/.ssh/id_ed25519
+
+```
+Merge Conflicts: If multiple people make changes to the same files, you might run into merge conflicts when pulling changes. You'll need to resolve conflicts manually in your files and then commit the resolution:
+
+```
+git add conflicted_file
+git commit -m "Resolved merge conflict"
+
+```
+
+
