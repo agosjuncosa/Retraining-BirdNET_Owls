@@ -1,0 +1,61 @@
+<<<<<<<<<<<<<<<<<USING THE SAME KEY ACROSS MULTIPLE REPOSITORIES>>>>>>>>>>>>>>>>>>>>>
+
+Once you've added your SSH public key to your GitHub (or other Git platform) account, you can use that same key to authenticate with any repository under that account.
+There’s no need to generate a new key for each repository unless you specifically want to separate them for security or organizational reasons.
+
+Once you've added your SSH key to your account, you can clone or push/pull from any repository associated with your account by using the SSH URLs:
+
+Clone repository 1
+
+```
+git clone git@github.com:yourusername/repository1.git
+
+```
+
+Clone repository 2
+
+```
+git clone git@github.com:yourusername/repository2.git
+
+```
+
+<<<<<<<<<<<<<<<HOW TO USE DIFFERENT REPOSITORIES AND MOVE FILES BETWEEN THEM>>>>>>>>>>>>>
+
+Scenario 1: Moving Files Manually
+If you just want to copy or move files from one repository to another (without keeping history), you can do this manually:
+
+Navigate to the repository where the files exist:
+
+```
+cd /path/to/repository1
+
+```
+Copy or move the files to the directory of the other repository:
+
+To copy files (preserving the original):
+```
+cp /path/to/file /path/to/other/repository
+```
+To move files (removing the original):
+
+```
+mv /path/to/file /path/to/other/repository
+
+```
+Commit and push the changes in the second repository:
+
+Navigate to the second repository:
+
+```
+cd /path/to/other/repository
+
+```
+Add, commit, and push the changes:
+
+```
+git add .
+git commit -m "Added files from repository1"
+git push origin main
+
+```
+
