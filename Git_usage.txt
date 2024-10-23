@@ -1,0 +1,84 @@
+<<Step-by-Step Git Workflow>>
+
+Navigate to Your Repository: Start by opening a terminal and navigating to the local folder where your Git repository is located:
+
+```
+cd /path/to/your/repository
+Check the Status: Before making any changes or committing, it's a good practice to check the status of your repository. This will show you which files have been changed, added, or deleted.
+```
+```
+git status
+```
+Make Your Changes: You will typically be modifying files in your repository (code, documentation, etc.). Git will track any changes that are made to files within the repository.
+
+Stage the Changes: Once you’ve made changes, you need to stage them before committing. You can stage specific files or all changes:
+
+To stage a specific file:
+
+```
+git add <file>
+```
+
+To stage all modified and new files:
+
+```git add .
+```
+Commit the Changes: After staging the changes, commit them with a message that describes what you've done. The commit message should be concise but descriptive.
+
+```
+git commit -m "Your descriptive commit message"
+```
+Push the Changes: Now, you need to push your local commits to the remote repository (e.g., GitHub). You can push to the main (or any other) branch:
+
+```
+git push origin main
+Since you've already added your SSH key, you won’t need to enter your username or password. The connection will be handled by your SSH key.
+```
+
+[Common Workflow Actions]
+A. Pull the Latest Changes (if needed):
+If you're collaborating with others or making changes on multiple machines, always pull the latest changes from the repository before making new changes:
+
+```
+git pull origin main
+```
+This will bring in any changes that were made by others (or by you on another machine) and ensure your local repository is up to date.
+
+B. View the Log of Commits:
+To see the history of commits in your repository, use:
+
+```
+git log
+```
+C. SSH Key Management:
+If you close the terminal or restart your machine, you'll need to add your SSH key to the SSH agent again before pushing or pulling:
+
+```
+eval "$(ssh-agent -s)"
+
+ssh-add ~/.ssh/id_ed25519
+```
+
+[Full Example Workflow]
+Here’s an example of what a typical Git workflow might look like:
+
+bash
+Copy code
+# 1. Navigate to your repository
+cd /home/agosjuncosa/Retraining-BirdNET_Owls
+
+# 2. Check the status of your repository
+git status
+
+# 3. Make changes to your files (modify code, update docs, etc.)
+
+# 4. Add all changed files to the staging area
+git add .
+
+# 5. Commit the changes with a meaningful message
+git commit -m "Fixed audio processing bug and updated README"
+
+# 6. Push the changes to the remote repository
+git push origin main
+Troubleshooting Common Issues
+Permission Denied (Public Key): If you encounter this issue, it might be because your SSH key isn’t added to the SSH agent. Run the following command to add it again:
