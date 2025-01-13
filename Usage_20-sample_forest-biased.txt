@@ -1,0 +1,14 @@
+--This code is intended to be used to select a stratified subset of recordings representing
+the 20% of audio data representative of the survey effort across months, night periods
+and habitat types but with an intended bias to overrepresent the forest habitat type
+up to a 30% more than the other habitat types. This was intended to make the model more
+capable of correctly classifiying the more rare sapecies (or trying to) that are
+solely present in the forest habitat type. Moreover, this habitat type is likely to 
+have a more complexity and viersity of sounds than the farms and pine plantation habitat
+types. 
+
+To run this file from the console you should locate the directory where the file is stored
+then run python3 stratified_selection.py /path/to/root_dir /path/to/target_dir
+
+
+In the first intent using Disco 2 found FA 654 files, PI 654 files and FO 851 (biasing for 30% more).
