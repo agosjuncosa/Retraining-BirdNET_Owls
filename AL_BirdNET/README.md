@@ -18,16 +18,13 @@ The goal of this project is to adapt BirdNET to better recognize and classify At
 The workflow involves running a series of Jupyter notebooks in a specified order, along with some additional data manipulation as needed. Below is a step-by-step guide:
 
 1. **Training Set Tracker**  
-   Run the `1-5-Training_set_tracker.ipynb` notebook to track all training files for the initial BirdNET retraining.  
+   Run the `1-4-Training_set_tracker.ipynb` notebook to track all training files for the initial BirdNET retraining.  
    > **Note:** Re-run this notebook after each update to the training set.
 
 2. **Uncertainty Sampling (Iteration 1)**  
-   Run the `2-Cmplx_Uncertainty_sampling.ipynb` notebook to select clips for validation in your first active learning iteration.
+   Run the `2-Dynamic_Uncertainty_sampling.ipynb` notebook to select clips for validation in your first active learning iteration.
 
-3. **File Renaming and Scoring**  
-   Run the `3-7-Rename_del_score.ipynb` notebook to process the selected files (e.g., remove extraneous filename parts).
-
-4. **Clip Validation**  
+3. **Clip Validation**  
    Validate your selected clips using your preferred method (e.g., Raven Pro).  
    - Generate a `.txt` annotation file for each validated class.
    - Rename the validated files to append the new annotated class at the end of the filename.
@@ -41,24 +38,23 @@ The workflow involves running a series of Jupyter notebooks in a specified order
    This precision file will be used from iteration 2 onwards.  
    > **Important:** Update the path to this `precision.csv` in the `2-Cmplx_Uncertainty_sampling.ipynb` notebook for subsequent iterations.
 
-5. **Update Training Set Tracker**  
-   Re-run the `1-5-Training_set_tracker.ipynb` notebook and update the iteration parameter in the code:
+4. **Update Training Set Tracker**  
+   Re-run the `1-4-Training_set_tracker.ipynb` notebook and update the iteration parameter in the code:
    ```python
    current_iteration = 1  # Update this for each new iteration
 
-6. **Update Training Set Tracker**
-Run `6-Random_sampling.ipynb`
+5. **Perform Random Sampling**
+Run `5-Random_sampling.ipynb`
 
-7. **Repeat Steps**
+6. **Repeat Steps**
 
     - Go back to step 3.
     - Then proceed to step 4.
-    - Then go back to step 5.
-   > **Note: Do not change the iteration number after step 5; update it only after retraining the model.**
+   > **Note: Do not change the iteration number after step 4; update it only after retraining the model.**
 
     **Additional Notes**
    * Iteration 2 Onwards:
-     From iteration 2 forward, include the generated `precision.csv` file in the `2-Cmplx_Uncertainty_sampling.ipynb` notebook.
+     From iteration 2 forward, include the generated `precision.csv` file in the `2-Dynamic_Uncertainty_sampling.ipynb` notebook.
    * Helper vs. Target Classes:
      For helper classes (e.g., Red Junglefowl, frogs) that you include in training:
      They are integrated into the uncertainty sampling process but are excluded from random sampling. This ensures that while their performance is monitored, they do not overwhelm the training set relative to the target classes.
