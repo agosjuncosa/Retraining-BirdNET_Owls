@@ -61,11 +61,12 @@ Run `6-Random_sampling.ipynb`
      From iteration 2 forward, include the generated `precision.csv` file in the `2-Cmplx_Uncertainty_sampling.ipynb` notebook.
    * Helper vs. Target Classes:
      For helper classes (e.g., Red Junglefowl, frogs) that you include in training:
+     They are integrated into the uncertainty sampling process but are excluded from random sampling. This ensures that while their performance is monitored, they do not overwhelm the training set relative to the target classes.
 
-They are integrated into the uncertainty sampling process but are excluded from random sampling.
-This ensures that while their performance is monitored, they do not overwhelm the training set relative to the target classes.
 
-#### END - (from iteration 2 onwards, include precision.csv in 2-Cmplx_Uncertainty_sampling.ipynb). 
+By following the above steps, you can iteratively improve BirdNET's performance on your target dataset while managing class imbalances and efficiently using your annotation budget.
+
+Feel free to reach out with any questions or suggestions for improvements!
 
 
 
