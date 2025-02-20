@@ -75,12 +75,4 @@ If BirdNET fails to detect these low-pitch species during active learning, I wil
 - Low-frequency calls should **appear higher** in the spectrogram.
 - May improve BirdNET’s ability to **differentiate target low-frequency sounds from background noise**.
 
----
-
-## **🚀 Conclusion & Next Steps**
-1. **Run BirdNET on unmodified data** to confirm low-frequency detection issues.
-2. **Test both approaches (Model A & Model B) on the same dataset**.
-3. **Compare precision & recall** to determine which method is more effective.
-4. If neither model is sufficient, consider **additional fine-tuning strategies**.
-
-🎯 **This strategy will help improve detection of low-pitch owl songs and refine BirdNET's classification ability!** 🦉🔥
+-- 
