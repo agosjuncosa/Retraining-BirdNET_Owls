@@ -75,4 +75,4 @@ If BirdNET fails to detect these low-pitch species during active learning, I wil
 - Low-frequency calls should **appear higher** in the spectrogram.
 - May improve BirdNET’s ability to **differentiate target low-frequency sounds from background noise**.
 
--- 
+---
